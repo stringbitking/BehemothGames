@@ -1,0 +1,13 @@
+C:\Users\nicroto\Desktop\CurrentProjects\BehemothGames\BehemothGames\Behemoth.Models\bin\Debug\Behemoth.Models.dll
+C:\Users\nicroto\Desktop\CurrentProjects\BehemothGames\BehemothGames\Behemoth.Models\bin\Debug\Behemoth.Models.pdb
+C:\Users\nicroto\Desktop\CurrentProjects\BehemothGames\BehemothGames\Behemoth.Models\obj\Debug\Behemoth.Models.dll
+C:\Users\nicroto\Desktop\CurrentProjects\BehemothGames\BehemothGames\Behemoth.Models\obj\Debug\Behemoth.Models.pdb
+C:\Users\nicroto\Desktop\CurrentProjects\BehemothGames\BehemothGames\Behemoth.Models\bin\Debug\Behemoth.Models.dll.config
+C:\Users\nicroto\Desktop\CurrentProjects\BehemothGames\BehemothGames\Behemoth.Models\bin\Debug\EntityFramework.dll
+C:\Users\nicroto\Desktop\CurrentProjects\BehemothGames\BehemothGames\Behemoth.Models\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\nicroto\Desktop\CurrentProjects\BehemothGames\BehemothGames\Behemoth.Models\bin\Debug\Microsoft.AspNet.Identity.Core.dll
+C:\Users\nicroto\Desktop\CurrentProjects\BehemothGames\BehemothGames\Behemoth.Models\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.dll
+C:\Users\nicroto\Desktop\CurrentProjects\BehemothGames\BehemothGames\Behemoth.Models\bin\Debug\EntityFramework.xml
+C:\Users\nicroto\Desktop\CurrentProjects\BehemothGames\BehemothGames\Behemoth.Models\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\nicroto\Desktop\CurrentProjects\BehemothGames\BehemothGames\Behemoth.Models\bin\Debug\Microsoft.AspNet.Identity.Core.xml
+C:\Users\nicroto\Desktop\CurrentProjects\BehemothGames\BehemothGames\Behemoth.Models\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.xml

@@ -1,0 +1,17 @@
+﻿@model Behemoth.Models.Game
+
+@{
+    ViewBag.Title = "Play";
+}
+
+<div id="game-container"></div>
+<input type="hidden" id="gameId" value=@ViewBag.RoomId />
+
+<script src="~/Scripts/jquery-1.8.2.min.js"></script>
+<script src="@Url.Content("/Scripts/jquery.signalR-1.0.0.min.js")"></script>
+<script src="@Url.Content("/signalr/hubs")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/libs/rsvp.min.js")"></script>
+<script src="@Url.Content("/Scripts/libs/http-requester.js")"></script>
+<script src="@Url.Content("/Scripts/Games/" + Model.ScriptUrl)"></script>
+
+

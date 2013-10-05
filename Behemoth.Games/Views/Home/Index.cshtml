@@ -1,0 +1,76 @@
+﻿@model IEnumerable<Behemoth.Games.Models.CategoryViewModel>
+@{
+    ViewBag.Title = "Home Page";
+
+}
+
+<h1>Games</h1>
+
+@(Html.Kendo()
+            .AutoComplete()
+            .Name("serversideautocomplete")
+            .DataTextField("Name")
+            .MinLength(3)
+            .Placeholder("Enter game")
+            .Events(ev =>
+                {
+                    ev.Select("selectAutoComplete");
+                })
+            .DataSource(data =>
+            {
+                data.Read(read =>
+                    {
+                        read.Action("GetAutocompleteData", "Games")
+                            .Data("onAdditionalData");
+                    })
+                    .ServerFiltering(true);
+            })
+                        .Template("<a href=\"/Games/Details/${data.Id}\"> ${data.Name} </a>"))
+
+@foreach (var category in Model)
+{
+    @*<div class="category-item well well-large">*@
+    <div class="category-item">
+        <h3>
+            @Html.ActionLink(@category.Name, "Details", "Categories", new { id = category.Id, area = "" }, null)
+        </h3>
+        <ul class="thumbnails">
+            @foreach (var game in category.Games)
+            {
+                <li class="span2">
+                    <div class="thumbnail">
+                        <img data-src="holder.js/300x200" style="width: 200px" src=@("/img/" + game.ImageUrl) alt="">
+
+                        <h4>
+                            @{
+                string gameName = game.Name;
+
+                if (gameName.Length > 15)
+                {
+                    gameName = gameName.Substring(0, 15) + "...";
+                }
+                            }
+
+                            @Html.ActionLink(gameName, "Details", "Games", new { id = game.Id }, null)
+                        </h4>
+                    </div>
+                </li>
+            }
+        </ul>
+    </div>
+}
+
+
+<script>
+    function onAdditionalData() {
+        return {
+            text: $('#serversideautocomplete').val(),
+        }
+    }
+
+    function selectAutoComplete(e) {
+        console.log(this.dataItem(e.item.index()).Id)
+        var id = this.dataItem(e.item.index()).Id;
+        window.location.replace("/Games/Details/" + id);
+    }
+</script>

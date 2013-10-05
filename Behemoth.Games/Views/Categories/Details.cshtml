@@ -1,0 +1,32 @@
+﻿@model Behemoth.Games.Models.CategoryViewModel
+
+@{
+    ViewBag.Title = "Category Details";
+}
+
+<h3><i>Category: @Model.Name</i></h3>
+
+<div id="success-fav" class="alert alert-success">
+    Successfully added to favourites.
+</div>
+
+<div class="bs-docs-examlpe">
+    @foreach (var game in Model.Games)
+    {
+        @Html.Partial("_Game", game)
+    }
+</div>
+
+
+<script src="~/Scripts/libs/rsvp.min.js"></script>
+<script src="~/Scripts/libs/http-requester.js"></script>
+<script>
+    $(".fav-btn").click(function(e) {
+        requester.getJSON("http://localhost:2258/api/GamesApi/Favourite/" + $(e.target).attr("data-id")).then(function() {
+
+            $("#success-fav").show();
+            $("#success-fav").fadeOut(3000);
+            $(e.target).hide();
+        });
+    });
+</script>

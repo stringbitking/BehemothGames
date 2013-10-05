@@ -1,0 +1,27 @@
+﻿@model Behemoth.Games.Models.GameViewModel
+
+@{
+    ViewBag.Title = "Game Details";
+}
+
+<div id="success-fav" class="alert alert-success">
+    Successfully added to favourites.
+</div>
+
+@Html.Partial("_Game", Model)
+
+<p>
+
+</p>
+
+<script src="~/Scripts/libs/rsvp.min.js"></script>
+<script src="~/Scripts/libs/http-requester.js"></script>
+<script>
+    $("#favourite-button").click(function() {
+        requester.getJSON("http://localhost:2258/api/GamesApi/Favourite/" + @Model.Id).then(function() {
+            $("#success-fav").show();
+            $("#success-fav").fadeOut(3000);
+            $("#favourite-button").hide();
+        });
+    });
+</script>

@@ -1,0 +1,44 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+@(Html.Kendo()
+    .Grid<Behemoth.Games.Areas.Admin.Models.UserViewModel>()
+    .Name("users-grid")
+    .Columns(columns =>
+    {
+        columns.Bound(model => model.Username);
+        columns.Command(command =>
+            {
+                //command.Edit();
+                //command.Destroy();
+                
+            });
+    })
+    .Pageable()
+    .Sortable()
+    .Selectable()
+    //.Editable(edit =>
+    //    {
+    //        edit.Mode(GridEditMode.PopUp);
+    //    })
+    //.ToolBar(tool =>
+    //{
+    //    tool.Create();
+    //})
+    .DataSource(data =>
+    {
+        data.Ajax()
+            .Model(m => m.Id(c => c.Id))
+            .PageSize(5)
+            .ServerOperation(true)
+            //.Create("CreateCategory", "CategoriesAdmin")
+            .Read("ReadUsers", "UsersAdmin");
+            //.Update("UpdateCategory", "CategoriesAdmin")
+            //.Destroy("DeleteCategory", "CategoriesAdmin");
+
+    })
+)

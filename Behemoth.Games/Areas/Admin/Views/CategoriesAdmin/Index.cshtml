@@ -1,0 +1,51 @@
+﻿@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+@(Html.Kendo()
+    .Grid<Behemoth.Games.Areas.Admin.Models.CategoryViewModel>()
+    .Name("categories-grid")
+    .Columns(columns =>
+        {
+            columns.Bound(model => model.ImageUrl).ClientTemplate("<img style='width: 50px' src='" +
+                                                                    Url.Content("~/img/") +
+                                                                    "#:ImageUrl#' alt='#: ImageUrl #' />").Width(100);
+            columns.Bound(model => model.Name);
+            columns.Bound(model => model.Description);
+            columns.Command(command =>
+                {
+                    command.Edit();
+                    command.Destroy();
+
+                });
+        })
+    .Pageable()
+    .Sortable()
+    .Selectable()
+    .Editable(edit =>
+        {
+            edit.Mode(GridEditMode.PopUp).TemplateName("FileUploadCreateEdit");
+        })
+    .ToolBar(tool =>
+    {
+        tool.Create();
+    })
+    .DataSource(data =>
+    {
+        data.Ajax()
+            .Model(m => m.Id(c => c.Id))
+            .PageSize(5)
+            .ServerOperation(true)
+            .Create("CreateCategory", "CategoriesAdmin")
+            .Read("ReadCategories", "CategoriesAdmin")
+            .Update("UpdateCategory", "CategoriesAdmin")
+            .Destroy("DeleteCategory", "CategoriesAdmin");
+
+    })
+)
+
+<script>
+
+</script>

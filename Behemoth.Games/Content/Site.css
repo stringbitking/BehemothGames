@@ -1,0 +1,85 @@
+﻿body {
+    padding-top: 60px;
+    padding-bottom: 40px;
+}
+
+/* styles for validation helpers */
+.field-validation-error {
+    color: #b94a48;
+}
+
+.field-validation-valid {
+    display: none;
+}
+
+input.input-validation-error {
+    border: 1px solid #b94a48;
+}
+
+input[type="checkbox"].input-validation-error {
+    border: 0 none;
+}
+
+.validation-summary-errors {
+    color: #b94a48;
+}
+
+.validation-summary-valid {
+    display: none;
+}
+
+/* styles for removing the background from form */
+.no-color {
+    background-color: white;
+    border-style: none;
+}
+
+/* Custom */
+
+#success-fav {
+    display: none;
+    position: fixed;
+    margin-top: 16%;
+    margin-left: 30%;
+}
+
+.img-small {
+    width: 50px;
+}
+
+.rating-stars {
+    margin-top: 10px;
+}
+
+.rating-stars a{
+    background-image: url("../img/star-empty.png");
+    float: left;
+    width: 32px;
+    height: 32px;
+}
+
+#vote-result {
+    font-size: 18px;
+}
+
+.k-menu {
+    width: 100%;
+}
+
+.k-state-focused {
+    border-color: orange;
+}
+
+body {
+    background-image: url("/img/skeleton-large.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.category-item {
+    border: 1px solid white;
+    border-radius: 15px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    padding-left: 15px;
+}

@@ -1,0 +1,33 @@
+@model Behemoth.Games.Areas.Admin.Models.CategoryViewModel
+@{
+    string textBoxId = "tb-file-name";
+}
+
+@Html.LabelFor(model => model.Name)
+@Html.TextBoxFor(model => model.Name)
+@Html.LabelFor(model => model.Description)
+@Html.TextBoxFor(model => model.Description)
+@Html.LabelFor(model => model.ImageUrl)
+@Html.TextBoxFor(model => model.ImageUrl, new { id = textBoxId, style = "display: none" })
+
+<input type="file" name="upload" id="file-uploader" />
+
+<script type="text/javascript">
+    function fillFileName(e) {
+        var tbId = '@("#" + textBoxId)';
+        $(tbId).val(e.files[0].name);
+        $(tbId).trigger("change");
+    }
+
+    $(document).ready(function () {
+        $("#file-uploader").kendoUpload({
+            multiple: false,
+            async: {
+                saveUrl: "CategoriesAdmin/UploadFile",
+                autoUpload: true
+            },
+            success: fillFileName
+        });
+    });
+
+</script>

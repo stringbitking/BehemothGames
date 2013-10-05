@@ -1,0 +1,15 @@
+﻿@model Behemoth.Models.ApplicationUser
+@{
+    ViewBag.Title = "FavouriteGames";
+}
+
+<h2>FavouriteGames</h2>
+
+<div id="games-container">
+    @Html.Partial("_FavouriteGames", Model.FavouriteGames)
+</div>
+
+
+<script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+
+  

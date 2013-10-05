@@ -1,0 +1,30 @@
+﻿@model string
+@{
+    ViewBag.Title = "FileUpload";
+    string textBoxId = ViewData["id"].ToString();
+}
+
+@Html.TextBoxFor(model => model, new { id = textBoxId, style = "display: none" })
+
+@(Html.Kendo()
+        .Upload()
+        .Name(ViewData["uploadId"].ToString())
+        .Multiple(false)
+        .Async(async =>
+        {
+            async.AutoUpload(true)
+                .Save(ViewData["action"].ToString(), "GamesAdmin");
+        })
+        .Events(ev =>
+            {
+                ev.Progress(ViewData["eventFunction"].ToString());
+            }))
+
+
+<script>
+
+    function @ViewData["eventFunction"].ToString() (e) {
+        var textBoxId = '@("#" + textBoxId)'
+        $(textBoxId).val(e.files[0].name);
+    }
+</script>

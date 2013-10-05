@@ -1,0 +1,73 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/jquery")
+    @Styles.Render("~/Content/kendo")
+    @Scripts.Render("~/bundles/kendo")
+
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">@*
+    <div class="navbar-inner">
+    <div>
+        <div class="container">*@
+                <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.ActionLink("Behemoth Games", "Index", "Home", new { area = "" }, new { @class = "brand" })
+                <div class="nav-collapse collapse">
+
+                    @Html.Partial("_LoginPartial")
+                </div>
+
+                @(Html.Kendo()
+                        .Menu()
+                        .Name("main-menu")
+                        .Items(items =>
+                        {
+                            items.Add().Text("Home").Action("Index", "Home", new { area = "" });
+
+                            items.Add().Text("About").Action("About", "Home", new { area = "" });
+
+                            items.Add().Text("Categories").Action("Index", "Categories", new { area = "" });
+
+                            if (User.Identity.IsAuthenticated)
+                            {
+                                items.Add().Text("Favourite Games").Action("FavouriteGames", "Account", new { area = "" });
+
+                                if (User.IsInRole("Admin"))
+                                {
+                                    items.Add().Text("Admin").Items(children =>
+                                    {
+                                        children.Add().Text("Manage Users").Action("Index", "UsersAdmin", new { area = "Admin" });
+                                        children.Add().Text("Manage Categories").Action("Index", "CategoriesAdmin", new { area = "Admin" });
+                                        children.Add().Text("Manage Games").Action("Index", "GamesAdmin", new { area = "Admin" });
+                                    });
+                                }
+                            }
+
+                        })
+                        .Direction(MenuDirection.Bottom))
+
+            @*</div>
+    </div>*@
+    </div>
+    <div class="container">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+        </footer>
+    </div>
+
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

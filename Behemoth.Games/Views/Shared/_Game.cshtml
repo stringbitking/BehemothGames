@@ -1,0 +1,109 @@
+﻿@model Behemoth.Games.Models.GameViewModel
+
+<div class="media">
+    <a class="pull-left" href="#">
+        <img class="media-object" data-src="holder.js/64x64" style="width: 200px" src=@("/img/" + Model.ImageUrl)>
+    </a>
+    <div class="media-body">
+        <h4 class="media-heading">
+            @Html.ActionLink(Model.Name, "Details", "Games", new { id = Model.Id }, null)
+        </h4>
+        <div>
+            @Model.Description
+            <div>
+                @if (Model.CategoryName == "Multiplayer")
+                {
+                    @Html.ActionLink("Play", "Rooms", "Games", new { id = Model.Id }, new { @class = "btn btn-primary" })
+                }
+                else
+                {
+                    @Html.ActionLink("Play", "Play", "Games", new { id = Model.Id }, new { @class = "btn btn-primary" })
+                }
+
+                @if (!Model.IsFavourite && User.Identity.IsAuthenticated)
+                {
+                    <button data-id="@Model.Id" class="btn fav-btn" id="favourite-button">Add to favourites</button>
+                }
+                <div id='@("stars-wrapper-" + Model.Id)'>
+                    <div id='@("stars-holder-" + Model.Id)' class="rating-stars clearfix" data-id="@Model.Id">
+                        <a href="#" data-id="1">
+                        </a>
+                        <a href="#" data-id="2">
+                        </a>
+                        <a href="#" data-id="3">
+                        </a>
+                        <a href="#" data-id="4">
+                        </a>
+                        <a href="#" data-id="5">
+                        </a>
+                    </div>
+                </div>
+                <div id="vote-result">
+                    Average vote:
+                    <span id='@("average-vote-" + Model.Id)' class="badge badge-info"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    var @("stars" + Model.Id) = [];
+    var @("starsCount" + Model.Id) = 0;
+    var @("starsHolder" + Model.Id) = $('@("#stars-holder-" + Model.Id)').children();
+
+    for (var i = 0; i < @("starsHolder" + Model.Id).length; i++) {
+        @("stars" + Model.Id).push(@("starsHolder" + Model.Id)[i]);
+    }
+
+    $(function () {
+        var gameId = $('@("#stars-holder-" + Model.Id)').attr("data-id");
+        requester.getJSON("http://localhost:2258/api/GamesApi/GameVotes/" + gameId)
+            .then(function (data) {
+                @("starsCount" + Model.Id) = data.stars;
+                @("fillStars" + Model.Id)(data.stars);
+                $('@("#average-vote-" + Model.Id)').text(data.averageVote.toString().substring(0, 4));
+            });
+    });
+
+    $('@("#stars-wrapper-" + Model.Id + " .rating-stars a")').hover(function () {
+        @("clearStars" + Model.Id)();
+        debugger;
+        var selectedStar = $(this).attr("data-id");
+        @("fillStars" + Model.Id)(selectedStar);
+    }, function () {
+        @("clearStars" + Model.Id)();
+        @("fillStars" + Model.Id)(@("starsCount" + Model.Id));
+    });
+
+    $('@("#stars-wrapper-" + Model.Id + " .rating-stars a")').click(function (ev) {
+        var gameId = ev.target.parentElement.getAttribute("data-id");
+        var vote = ev.target.getAttribute("data-id");
+
+        requester.getJSON("http://localhost:2258/api/GamesApi/VoteForGame/" + gameId + "?vote=" + vote)
+            .then(function () {
+                requester.getJSON("http://localhost:2258/api/GamesApi/GameVotes/" + gameId)
+                    .then(function (data) {
+                        @("starsCount" + Model.Id) = vote;
+                        @("clearStars" + Model.Id)();
+                        @("fillStars" + Model.Id)(@("starsCount" + Model.Id));
+                        //debugger;
+                        $('@("#average-vote-" + Model.Id)').text(data.averageVote.toString().substring(0,4));
+                    });
+            });
+
+        return false;
+    });
+
+    function @("clearStars" + Model.Id)() {
+        for (var i = 0; i < @("stars" + Model.Id).length; i++) {
+            @("stars" + Model.Id)[i].style.backgroundImage = "url('../../img/star-empty.png')";
+        }
+    }
+
+    function @("fillStars" + Model.Id)(starsLimit) {
+        for (var i = 0; i < starsLimit; i++) {
+            @("stars" + Model.Id)[i].style.backgroundImage = "url('../../img/star-full.png')";
+        }
+    }
+</script>

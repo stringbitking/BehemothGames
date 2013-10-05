@@ -1,0 +1,46 @@
+﻿@model IEnumerable<Behemoth.Games.Models.RoomViewModel>
+
+@{
+    ViewBag.Title = "Rooms";
+}
+
+<h2>Rooms</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Id)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Status)
+        </th>
+        <th>
+            Action
+        </th>
+    </tr>
+
+    @foreach (var room in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => room.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => room.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => room.Status)
+            </td>
+            <td>
+                @Html.ActionLink("Join", "PlayMultiplayer", "Games", new { roomId = room.Id, gameId = ViewBag.GameId }, null)
+            </td>
+        </tr>
+    }
+
+</table>
