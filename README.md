@@ -1,4 +1,4 @@
 BehemothGames
 =============
 
-Web site for html5 canvas games with multiplayer including signalR games.
+Web site for html5 canvas games with multiplayer category including signalR games.
