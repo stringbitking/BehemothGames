@@ -1,0 +1,6 @@
+@model string
+@{
+    var rolesList = ViewBag.Roles as IEnumerable<SelectListItem>;    
+}
+
+@Html.DropDownListFor(m => m, rolesList)

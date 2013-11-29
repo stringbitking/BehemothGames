@@ -58,7 +58,7 @@
 
     $(function () {
         var gameId = $('@("#stars-holder-" + Model.Id)').attr("data-id");
-        requester.getJSON("http://localhost:2258/api/GamesApi/GameVotes/" + gameId)
+        requester.getJSON("/api/GamesApi/GameVotes/" + gameId)
             .then(function (data) {
                 @("starsCount" + Model.Id) = data.stars;
                 @("fillStars" + Model.Id)(data.stars);
@@ -80,9 +80,9 @@
         var gameId = ev.target.parentElement.getAttribute("data-id");
         var vote = ev.target.getAttribute("data-id");
 
-        requester.getJSON("http://localhost:2258/api/GamesApi/VoteForGame/" + gameId + "?vote=" + vote)
+        requester.getJSON("/api/GamesApi/VoteForGame/" + gameId + "?vote=" + vote)
             .then(function () {
-                requester.getJSON("http://localhost:2258/api/GamesApi/GameVotes/" + gameId)
+                requester.getJSON("/api/GamesApi/GameVotes/" + gameId)
                     .then(function (data) {
                         @("starsCount" + Model.Id) = vote;
                         @("clearStars" + Model.Id)();

@@ -36,6 +36,7 @@ namespace Behemoth.Games
         public void JoinGameRoom(int roomId)
         {
             JoinRoom("room" + roomId);
+
         }
 
         public void SendShip(PlayerShip obj, int roomId)
@@ -88,6 +89,12 @@ namespace Behemoth.Games
             Clients.Group("room" + roomId, Context.ConnectionId).refreshShipPosition(obj);
         }
 
+        public void RefreshBall(object obj, int roomId)
+        {
+            // Call the broadcastMessage method to update clients.
+            Clients.Group("room" + roomId, Context.ConnectionId).refreshBallPosition(obj);
+        }
+
         public void RefreshInvaders(object obj, int roomId, string playerId)
         {
             DataContext ctx = new DataContext();
@@ -102,6 +109,12 @@ namespace Behemoth.Games
                 }
             }
 
+        }
+
+        public void CheckWin(int roomId)
+        {
+            // Call the broadcastMessage method to update clients.
+            Clients.Group("room" + roomId).displayWinner();
         }
 
         public void FireBullet(object obj, int roomId)

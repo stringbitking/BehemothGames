@@ -11,34 +11,37 @@
     .Columns(columns =>
     {
         columns.Bound(model => model.Username);
+        columns.Bound(model => model.Role).Width(200).EditorTemplateName("EditUserRole");
         columns.Command(command =>
             {
-                //command.Edit();
-                //command.Destroy();
+                command.Edit();
                 
             });
     })
     .Pageable()
     .Sortable()
     .Selectable()
-    //.Editable(edit =>
-    //    {
-    //        edit.Mode(GridEditMode.PopUp);
-    //    })
-    //.ToolBar(tool =>
-    //{
-    //    tool.Create();
-    //})
+        .Editable(edit =>
+            {
+                edit.Mode(GridEditMode.InLine);
+            })
     .DataSource(data =>
     {
         data.Ajax()
-            .Model(m => m.Id(c => c.Id))
+            .Model(m =>
+            {
+                m.Id(c => c.Id);
+                m.Field(f => f.Username).Editable(false);
+            })
             .PageSize(5)
             .ServerOperation(true)
-            //.Create("CreateCategory", "CategoriesAdmin")
-            .Read("ReadUsers", "UsersAdmin");
-            //.Update("UpdateCategory", "CategoriesAdmin")
-            //.Destroy("DeleteCategory", "CategoriesAdmin");
+            .Read("ReadUsers", "UsersAdmin")
+            .Update("UpdateUser", "UsersAdmin");
 
     })
 )
+
+
+<script>
+
+</script>

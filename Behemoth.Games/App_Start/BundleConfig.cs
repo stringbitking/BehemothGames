@@ -8,7 +8,6 @@ namespace Behemoth.Games
         // For more information on bundling, visit http://go.microsoft.com/fwlink/?LinkId=301862
         public static void RegisterBundles(BundleCollection bundles)
         {
-            bundles.IgnoreList.Clear();
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
                         "~/Scripts/Kendo/jquery.min.js"));
 
@@ -17,7 +16,7 @@ namespace Behemoth.Games
                         "~/Scripts/Kendo/kendo.aspnetmvc.min.js"));
 
             // The Kendo CSS bundle
-            bundles.Add(new StyleBundle("~/bundles/kendostyle").Include(
+            bundles.Add(new StyleBundle("~/Content/kendo").Include(
                         "~/Content/Kendo/kendo.common.min.css",
                         "~/Content/Kendo/kendo.black.min.css"));
 
@@ -36,6 +35,7 @@ namespace Behemoth.Games
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/Site.css",
+                      "~/Content/oval.css",
                       "~/Content/bootstrap-responsive.css"));
 
             // Clear all items from the ignore list to allow minified CSS and JavaScript files in debug mode

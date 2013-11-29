@@ -18,7 +18,7 @@
 <script src="~/Scripts/libs/http-requester.js"></script>
 <script>
     $("#favourite-button").click(function() {
-        requester.getJSON("http://localhost:2258/api/GamesApi/Favourite/" + @Model.Id).then(function() {
+        requester.getJSON("/api/GamesApi/Favourite/" + @Model.Id).then(function() {
             $("#success-fav").show();
             $("#success-fav").fadeOut(3000);
             $("#favourite-button").hide();

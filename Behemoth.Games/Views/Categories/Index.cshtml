@@ -5,30 +5,32 @@
 }
 
 <h2>Categories</h2>
-<ul class="thumbnails">
-    @foreach (var category in Model)
-    {
+<div id="main-wrapper">
+    <ul class="thumbnails">
+        @foreach (var category in Model)
+        {
 
-        <li class="span2">
-            <div class="thumbnail">
-                <img data-src="holder.js/300x200" style="width: 200px" src=@("/img/" + category.ImageUrl) alt="">
+            <li class="span2">
+                <div class="thumbnail">
+                    <img data-src="holder.js/300x200" style="width: 200px;" src=@("/img/" + category.ImageUrl) alt="">
 
-                <h4>
-                    @{
-                        string categoryName = category.Name;
+                    <h4>
+                        @{
+            string categoryName = category.Name;
 
-                        if (categoryName.Length > 15)
-                        {
-                            categoryName = categoryName.Substring(0, 15) + "...";
+            if (categoryName.Length > 15)
+            {
+                categoryName = categoryName.Substring(0, 15) + "...";
+            }
                         }
-                    }
 
-                    @Html.ActionLink(@category.Name, "Details", "Categories", new { id = category.Id, area = "" }, null)
-                </h4>
-            </div>
-        </li>
-
+                        @Html.ActionLink(@category.Name, "Details", "Categories", new { id = category.Id, area = "" }, null)
+                    </h4>
+                </div>
+            </li>
 
 
-    }
-</ul>
+
+        }
+    </ul>
+</div>

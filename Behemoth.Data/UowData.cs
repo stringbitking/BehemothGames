@@ -1,8 +1,10 @@
 ﻿namespace Behemoth.Data
 {
     using Behemoth.Models;
+    using Microsoft.AspNet.Identity.EntityFramework;
     using System;
     using System.Collections.Generic;
+    using System.Data.Entity;
 
     public class UowData : IUowData
     {
@@ -64,6 +66,27 @@
             get
             {
                 return this.GetRepository<Vote>();
+            }
+        }
+
+        public IRepository<Role> Roles
+        {
+            get
+            {
+                return this.GetRepository<Role>();
+            }
+        }
+
+        public IRepository<UserRole> UserRoles
+        {
+            get
+            {
+                return this.GetRepository<UserRole>();
+            }
+
+            set
+            {
+                this.context.UserRoles = (DbSet<UserRole>)value;
             }
         }
 

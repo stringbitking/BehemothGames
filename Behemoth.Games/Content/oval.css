@@ -1,0 +1,48 @@
+body {
+	position: relative;
+}
+
+#boardTable {
+	margin: 0 auto;
+	width: auto;
+	border: none;
+	border-spacing: 3px;
+	border-collapse: separate;
+}
+
+#boardTable td {
+	padding: 0;
+	border: none;
+	width: 30px;
+	height: 30px;
+
+	-moz-box-shadow: 3px 3px 50px black;
+	-webkit-box-shadow: 3px 3px 50px black;
+	box-shadow: 3px 3px 50px black;
+
+	border-radius: 30px;
+	-webkit-border-radius: 30px;
+	-moz-border-radius: 30px;
+}
+
+/*button {
+	float: left;
+	margin-left: 35%;
+}*/
+
+.buttons {
+	text-align: center;
+}
+
+.player1 {
+	float: left;
+	background-color: lightblue;
+}
+
+.player2 {
+	float: right;
+}
+
+#menu {
+	line-height: 25px;
+}

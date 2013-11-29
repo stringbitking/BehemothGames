@@ -15,7 +15,7 @@ namespace Behemoth.Data
         public DbSet<GameRoom> GameRooms { get; set; }
         public DbSet<Score> Scores { get; set; }
 
-        public System.Data.Entity.DbSet<Behemoth.Models.Category> Categories { get; set; }
+        public DbSet<Behemoth.Models.Category> Categories { get; set; }
         public DbSet<Vote> Votes { get; set; }
     }
 }

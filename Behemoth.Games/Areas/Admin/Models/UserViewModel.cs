@@ -1,4 +1,5 @@
 ﻿using Behemoth.Models;
+using Microsoft.AspNet.Identity.EntityFramework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,6 +19,7 @@ namespace Behemoth.Games.Areas.Admin.Models
                 {
                     Id = b.Id,
                     Username = b.UserName,
+                    Role = (b.Roles.FirstOrDefault().Role.Name ?? "No Role"),
                     IsAdmin = b.Roles.Any(r => r.Role.Name == "Admin")
                 };
             }
@@ -25,7 +27,7 @@ namespace Behemoth.Games.Areas.Admin.Models
 
         public string Id { get; set; }
         public string Username { get; set; }
-        
+        public string Role { get; set; }
         public bool IsAdmin { get; set; }
     }
 }

@@ -11,3 +11,4 @@ C:\Users\nicroto\Desktop\CurrentProjects\BehemothGames\BehemothGames\Behemoth.Mo
 C:\Users\nicroto\Desktop\CurrentProjects\BehemothGames\BehemothGames\Behemoth.Models\bin\Debug\EntityFramework.SqlServer.xml
 C:\Users\nicroto\Desktop\CurrentProjects\BehemothGames\BehemothGames\Behemoth.Models\bin\Debug\Microsoft.AspNet.Identity.Core.xml
 C:\Users\nicroto\Desktop\CurrentProjects\BehemothGames\BehemothGames\Behemoth.Models\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.xml
+C:\Users\nicroto\Desktop\CurrentProjects\BehemothGames\BehemothGames\Behemoth.Models\obj\Debug\Behemoth.Models.csprojResolveAssemblyReference.cache

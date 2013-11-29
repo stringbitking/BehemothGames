@@ -22,7 +22,7 @@
 <script src="~/Scripts/libs/http-requester.js"></script>
 <script>
     $(".fav-btn").click(function(e) {
-        requester.getJSON("http://localhost:2258/api/GamesApi/Favourite/" + $(e.target).attr("data-id")).then(function() {
+        requester.getJSON("/api/GamesApi/Favourite/" + $(e.target).attr("data-id")).then(function() {
 
             $("#success-fav").show();
             $("#success-fav").fadeOut(3000);
